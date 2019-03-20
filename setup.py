@@ -3,6 +3,10 @@ import os,sys
 import sysconfig
 import numpy
 
+example_data = ['Examples/*',
+                'Examples/*/*',
+                'Examples/*/*/*',
+                'Examples/*/*/*/*']
 
 ### Settings for Extension Building
 #compile_args = sysconfig.get_config_var('CFLAGS').split()
@@ -16,7 +20,7 @@ extension = Extension('_fasttrips',
                                'src/hyperlink.cpp',
                                'src/access_egress.cpp',
                                'src/path.cpp',
-                               'src/pathfinder.cpp',
+                               'src/pathfinder.cpp'
                                ],
                       extra_compile_args = compile_args,
                       include_dirs=[numpy.get_include()],
@@ -48,8 +52,7 @@ setup(name          = 'fasttrips',
                        'Programming Language :: Python :: 3',
                        'Programming Language :: Python :: 3.6'],
       keywords      = 'transit model dynamic passenger assignment simulation',
-      install_requires = ['functools32;python_version<="2.7"',
-                          'numpy>=1.15',
+      install_requires = ['numpy>=1.15',
                           'pandas==0.22',
                           'partridge==0.6.0.dev1',
                           'future',
@@ -57,8 +60,7 @@ setup(name          = 'fasttrips',
                           'psutil',
                           'pytest'],
       package_dir   = { 'fasttrips':'fasttrips' },
-      package_data  = { 'fasttrips':['Examples/*',
-                                     'tests/*.py'] },
+      package_data  = { 'fasttrips':example_data+['tests/test*.py']},
       entry_points  = { 'console_scripts': ['run_fasttrips=fasttrips.Run:main']},
       scripts       = [ 'scripts/create_tableau_path_map.py',
                         'scripts/run_example.py'],
