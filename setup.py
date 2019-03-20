@@ -3,14 +3,9 @@ import os,sys
 import sysconfig
 import numpy
 
-example_data = ['Examples/*',
-                'Examples/*/*',
-                'Examples/*/*/*',
-                'Examples/*/*/*/*']
-
 ### Settings for Extension Building
 #compile_args = sysconfig.get_config_var('CFLAGS').split()
-compile_args=["-std=c++11"]#+compile_args
+compile_args=["-std=c++11"]
 
 if sys.platform == 'darwin':
     compile_args+=["-mmacosx-version-min=10.9"]
@@ -60,7 +55,8 @@ setup(name          = 'fasttrips',
                           'psutil',
                           'pytest'],
       package_dir   = { 'fasttrips':'fasttrips' },
-      package_data  = { 'fasttrips':example_data+['tests/test*.py']},
+      package_data  = { 'fasttrips':['Examples/*','Examples/*/*','Examples/*/*/*','Examples/*/*/*/*',
+                                     'tests/*.py'] },
       entry_points  = { 'console_scripts': ['run_fasttrips=fasttrips.Run:main']},
       scripts       = [ 'scripts/create_tableau_path_map.py',
                         'scripts/run_example.py'],
