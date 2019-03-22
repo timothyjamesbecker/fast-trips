@@ -59,6 +59,7 @@ setup(name          = 'fasttrips',
                                      'tests/*.py'] },
       entry_points  = { 'console_scripts': ['run_fasttrips=fasttrips.Run:main']},
       scripts       = [ 'scripts/create_tableau_path_map.py',
-                        'scripts/run_example.py'],
+                        'scripts/run_example.py',
+                        'bin/FastTrips.py'],
       ext_modules   = [extension]
       )
