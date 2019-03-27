@@ -2,6 +2,7 @@
 
 import argparse
 import os
+import time
 from fasttrips import Run
 
 if __name__ == '__main__':
@@ -49,7 +50,7 @@ if __name__ == '__main__':
     else:                                    cpus = 1
     if args.no_stochastic:                   pf_type = "deterministic"
     else:                                    pf_type = "stochastic"
-
+    start = time.time()
     Run.run_fasttrips(input_network_dir       = network_dir,
                       input_demand_dir        = demand_dir,
                       run_config              = config_dir+'/config_ft.txt',
@@ -66,3 +67,5 @@ if __name__ == '__main__':
                       dispersion              = disp,
                       utils_conversion_factor = factor,
                       capacity                = not args.no_capacity)
+    stop = time.time()
+    print('total wall time is %s minutes'%(int(round((stop-start)/60.0,0))))
